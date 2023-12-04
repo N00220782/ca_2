@@ -45,8 +45,7 @@ class ArtistController extends Controller
 
             $request->validate([
                 'name' => 'required|string|unique:artists,name|min:2|max:150',
-                'genre' => 'required|in:Pop,Rock,Metal,Jazz,Hip Hop,Electronic',
-                'shows' =>['required' , 'exists:shows,id']
+                'genre' => 'required|in:Pop,Rock,Metal,Jazz,Hip Hop,Electronic'
             ]);
     
             $artist = Artist::create([
@@ -54,9 +53,6 @@ class ArtistController extends Controller
                 'genre' => $request->genre
 
             ]);
-
-            $artist->shows()->attach($request->shows);
-
     
             return to_route('admin.artists.index');
         }
@@ -93,8 +89,7 @@ class ArtistController extends Controller
 
             $request->validate([
                 'name' => 'required|string|unique:artists,name|min:2|max:150',
-                'genre' => 'required|in:Pop,Rock,Metal,Jazz,Hip Hop,Electronic',
-                'shows' =>['required' , 'exists:shows,id']
+                'genre' => 'required|in:Pop,Rock,Metal,Jazz,Hip Hop,Electronic'
             ]);
     
             $artist = Artist::update([
@@ -102,9 +97,6 @@ class ArtistController extends Controller
                 'genre' => $request->genre
 
             ]);
-
-            $artist->shows()->attach($request->shows);
-
     
             return to_route('admin.artists.index');
         }

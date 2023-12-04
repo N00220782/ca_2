@@ -54,8 +54,15 @@ class ShowController extends Controller
                 'ticket_price' => 'required',
                 'description' => 'required|string|min:5|max:1000',
                 'venue_id' => 'required',
-                'artists' =>['required' , 'exists:artists,id']
+                'artists' =>['required' , 'exists:artists,id'],
+                'show_image' => 'file|image'
             ]);
+
+            $show_image = $request->file('show_image');
+            $extension = $show_image->getClientOriginalExtension();
+            $filename = date('Y-m-d-His') . '_' . $request->title . '.' . $extension;
+
+            $show_image->storeAs('public/images', $filename);
     
             $show = Show::create([
                 'name' => $request->name,
@@ -64,8 +71,8 @@ class ShowController extends Controller
                 'end_time' => $request->end_time,
                 'ticket_price' => $request->ticket_price,
                 'description' => $request->description,
-                'venue_id' => $request->venue_id
-
+                'venue_id' => $request->venue_id,
+                'show_image' => $filename
             ]);
 
             $show->artists()->attach($request->artists);

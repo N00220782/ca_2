@@ -17,21 +17,35 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('user.shows.index')" :active="request()->routeIs('user.shows.index')">
+                    <x-nav-link :href="route('admin.shows.index')" :active="request()->routeIs('admin.shows.index')">
                         {{ __('Shows') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('user.artists.index')" :active="request()->routeIs('user.artists.index')">
+                    <x-nav-link :href="route('admin.shows.create')" :active="request()->routeIs('admin.shows.create')">
+                        {{ __('Create a Show') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('admin.artists.index')" :active="request()->routeIs('admin.artists.index')">
                         {{ __('Artists') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('user.venues.index')" :active="request()->routeIs('user.venues.index')">
+                    <x-nav-link :href="route('admin.artists.create')" :active="request()->routeIs('admin.artists.create')">
+                        {{ __('Create an Artist') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('admin.venues.index')" :active="request()->routeIs('admin.venues.index')">
                         {{ __('Venues') }}
                     </x-nav-link>
                 </div>
-                
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('admin.venues.create')" :active="request()->routeIs('admin.venues.create')">
+                        {{ __('Create a Venue') }}
+                    </x-nav-link>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->

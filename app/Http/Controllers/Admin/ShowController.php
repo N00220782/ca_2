@@ -133,7 +133,7 @@ class ShowController extends Controller
 
         $show_image->storeAs('public/images', $filename);
 
-        $show = Show::update([
+        $show = Show::where('id',$id)->update([
             'name' => $request->name,
             'date' => $request->date,
             'start_time' => $request->start_time,
@@ -142,10 +142,10 @@ class ShowController extends Controller
             'description' => $request->description,
             'venue_id' => $request->venue_id,
             'show_image' => $filename
+            
         ]);
 
         $show->artists()->attach($request->artists);
-
 
         return to_route('admin.shows.index');
     }

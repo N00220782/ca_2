@@ -20,7 +20,7 @@ class ShowController extends Controller
     {
         //Auth::user()->authoriseRoles('admin');
         if(!Auth::user()->hasRole('admin')){
-            return to_route('user.shows.index');
+            return to_route('shows.index');
         }
         $shows = Show::paginate(10);
         return view('user.shows.index')->with('shows', $shows);

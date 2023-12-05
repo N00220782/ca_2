@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.myApp')
     @section('header')
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ $venue->name }}
@@ -16,12 +16,6 @@
                     <p><b>Phone Number:</b> {{ $venue->phone }}</p> 
                     <p><b>Email Address:</b> {{ $venue->email }}</p>
                     <br>
-                    <a href="{{ route('admin.venues.edit', $venue->id) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                    <form method="POST" action="{{ route('venues.destroy', $venue->id) }}">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Delete</button>
-                    </form>
                 </div>
             </div>
         </div>

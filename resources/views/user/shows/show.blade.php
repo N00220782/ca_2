@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.myApp')
     @section('header')
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ $show->name }} ({{ $show->date }})
@@ -23,13 +23,6 @@
                         {{ $artist->name }}
                         @endforeach
                     <p>
-                        <br>
-                        <a href="{{ route('admin.shows.edit', $show->id) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                        <form method="POST" action="{{ route('shows.destroy', $show->id) }}">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Delete</button>
-                        </form>
 
                 </div>
             </div>

@@ -89,7 +89,7 @@ class ArtistController extends Controller
                 'genre' => 'required|in:Pop,Rock,Metal,Jazz,Hip Hop,Electronic'
             ]);
     
-            $artist = Artist::update([
+            $artist = Artist::where('id',$id)->update([
                 'name' => $request->name,
                 'genre' => $request->genre
 

@@ -97,7 +97,7 @@ class VenueController extends Controller
                 'email' => 'required'
             ]);
     
-            $venue = Venue::update([
+            $venue = Venue::where('id',$id)->update([
                 'name' => $request->name,
                 'address' => $request->address,
                 'capacity' => $request->capacity,

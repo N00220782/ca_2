@@ -39,7 +39,6 @@ class VenueController extends Controller
      */
     public function store(Request $request)
     {
-        {
 
             $request->validate([
                 'name' => 'required|string|unique:shows,name|min:2|max:150',
@@ -59,7 +58,6 @@ class VenueController extends Controller
             ]);
     
             return to_route('admin.venues.index');
-        }
     }
 
     /**
@@ -80,7 +78,9 @@ class VenueController extends Controller
     public function edit(string $id)
     {
         $venue = Venue::findOrFail($id);
-        return view('admin.venues.edit');
+        return view('admin.venues.edit', [
+            'venue' => $venue 
+        ]);
     }
 
     /**
@@ -88,7 +88,6 @@ class VenueController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        {
 
             $request->validate([
                 'name' => 'required|string|unique:shows,name|min:2|max:150',
@@ -108,7 +107,6 @@ class VenueController extends Controller
             ]);
     
             return to_route('admin.venues.index');
-        }
     }
 
     /**

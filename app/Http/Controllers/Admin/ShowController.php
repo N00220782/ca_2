@@ -44,8 +44,7 @@ class ShowController extends Controller
      */
     public function store(Request $request)
     {
-        {
-
+        
             $request->validate([
                 'name' => 'required|string|unique:shows,name|min:2|max:150',
                 'date' => 'required',
@@ -58,9 +57,10 @@ class ShowController extends Controller
                 'show_image' => 'file|image'
             ]);
 
+            
             $show_image = $request->file('show_image');
             $extension = $show_image->getClientOriginalExtension();
-            $filename = date('Y-m-d-His') . '_' . $request->title . '.' . $extension;
+            $filename = date('Y-m-d-His') . '.' . $extension;
 
             $show_image->storeAs('public/images', $filename);
     
@@ -79,7 +79,7 @@ class ShowController extends Controller
 
     
             return to_route('admin.shows.index');
-        }
+        
     }
 
     /**
@@ -102,8 +102,10 @@ class ShowController extends Controller
         $venues = Venue::all();
         $artists = Artist::all();
         $show = Show::findOrFail($id);
-        return view('admin.shows.edit')->with('venues', $venues)
-                                   ->with('artists', $artists);
+        return view('admin.shows.edit', [
+            'show' => $show 
+        ])->with('venues', $venues)
+          ->with('artists', $artists);
     }
 
     /**
@@ -111,35 +113,41 @@ class ShowController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        {
 
-            $request->validate([
-                'name' => 'required|string|unique:shows,name|min:2|max:150',
-                'date' => 'required',
-                'start_time' => 'required',
-                'end_time' => 'required',
-                'ticket_price' => 'required',
-                'description' => 'required|string|min:5|max:1000',
-                'venue_id' => 'required',
-                'artists' =>['required' , 'exists:artists,id']
-            ]);
-    
-            $show = Show::update([
-                'name' => $request->name,
-                'date' => $request->date,
-                'start_time' => $request->start_time,
-                'end_time' => $request->end_time,
-                'ticket_price' => $request->ticket_price,
-                'description' => $request->description,
-                'venue_id' => $request->venue_id
+        $request->validate([
+            'name' => 'required|string|unique:shows,name|min:2|max:150',
+            'date' => 'required',
+            'start_time' => 'required',
+            'end_time' => 'required',
+            'ticket_price' => 'required',
+            'description' => 'required|string|min:5|max:1000',
+            'venue_id' => 'required',
+            'artists' =>['required' , 'exists:artists,id'],
+            'show_image' => 'file|image'
+        ]);
 
-            ]);
+        
+        $show_image = $request->file('show_image');
+        $extension = $show_image->getClientOriginalExtension();
+        $filename = date('Y-m-d-His') . '.' . $extension;
 
-            $show->artists()->attach($request->artists);
+        $show_image->storeAs('public/images', $filename);
 
-    
-            return to_route('admin.shows.index');
-        }
+        $show = Show::update([
+            'name' => $request->name,
+            'date' => $request->date,
+            'start_time' => $request->start_time,
+            'end_time' => $request->end_time,
+            'ticket_price' => $request->ticket_price,
+            'description' => $request->description,
+            'venue_id' => $request->venue_id,
+            'show_image' => $filename
+        ]);
+
+        $show->artists()->attach($request->artists);
+
+
+        return to_route('admin.shows.index');
     }
 
     /**

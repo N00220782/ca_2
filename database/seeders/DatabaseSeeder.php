@@ -18,7 +18,6 @@ class DatabaseSeeder extends Seeder
             VenueSeeder::class,
             ArtistSeeder::class,
             ShowSeeder::class
-
         ]);
         // \App\Models\User::factory(10)->create();
 

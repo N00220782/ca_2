@@ -276,5 +276,38 @@ class ShowSeeder extends Seeder
         $show24->venue_id = 1;
         $show24->timestamps;
         $show24->save();
+
+        $show1->artists()->attach([1,8,20]);
+        $show2->artists()->attach([1,8,20]);
+        $show3->artists()->attach([2]);
+        $show4->artists()->attach([3]);
+        $show5->artists()->attach([3]);
+        $show6->artists()->attach([4]);
+        $show7->artists()->attach([5]);
+        $show8->artists()->attach([6,14]);
+        $show9->artists()->attach([7]);
+        $show10->artists()->attach([9,10]);
+        $show11->artists()->attach([9,10]);
+        $show12->artists()->attach([11]);
+        $show13->artists()->attach([12,13]);
+        $show14->artists()->attach([15]);
+        $show15->artists()->attach([16,17]);
+        $show16->artists()->attach([18]);
+        $show17->artists()->attach([19]);
+        $show18->artists()->attach([19]);
+        $show19->artists()->attach([21]);
+        $show20->artists()->attach([22,25,26]);
+        $show21->artists()->attach([22,25,26]);
+        $show22->artists()->attach([23]);
+        $show23->artists()->attach([24]);
+        $show24->artists()->attach([24]);
+
+
+
+
+
+
+
+
     }
 }

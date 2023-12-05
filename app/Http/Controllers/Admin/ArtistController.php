@@ -32,8 +32,7 @@ class ArtistController extends Controller
     {
         //Auth::user()->authoriseRoles('admin');
 
-        $shows = Show::all();
-        return view('admin.artists.create')->with('shows', $shows);
+        return view('admin.artists.create');
     }
 
     /**
@@ -41,7 +40,6 @@ class ArtistController extends Controller
      */
     public function store(Request $request)
     {
-        {
 
             $request->validate([
                 'name' => 'required|string|unique:artists,name|min:2|max:150',
@@ -55,7 +53,6 @@ class ArtistController extends Controller
             ]);
     
             return to_route('admin.artists.index');
-        }
     }
 
     /**
@@ -76,8 +73,9 @@ class ArtistController extends Controller
     public function edit(string $id)
     {
         $artist = Artist::findOrFail($id);
-        $shows = Show::all();
-        return view('admin.artists.edit')->with('shows', $shows);
+        return view('admin.artists.edit', [
+            'artist' => $artist 
+        ]);
     }
 
     /**
@@ -85,7 +83,6 @@ class ArtistController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        {
 
             $request->validate([
                 'name' => 'required|string|unique:artists,name|min:2|max:150',
@@ -99,7 +96,6 @@ class ArtistController extends Controller
             ]);
     
             return to_route('admin.artists.index');
-        }
     }
 
     /**

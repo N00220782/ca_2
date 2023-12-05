@@ -13,14 +13,20 @@
                         <img width="300" src={{ asset("storage/images/" . $show->show_image) }} />
                 </div>
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <p><b>Name:</b> {{ $show->name }}</p>
+                    <p><b>{{ $show->name }}</b></p>
                     <p><b>Date:</b> {{ $show->date }}</p> 
                     <p><b>Start Time:</b> {{ $show->start_time }}</p>
                     <p><b>End Time:</b> {{ $show->end_time }}</p>
                     <p><b>Ticket Price:</b> {{ $show->ticket_price }}</p>
                     <p><b>Description:</b> {{ $show->description }}</p>
                     <p><b>Venue:</b> {{ $show->venue->name }}</p> 
-                    <p><b>Artist(s):</b> {{ $show->artist }}</p>
+                    <p><b>Artist(s):</b>
+                        @foreach($show->artists as $artist)
+                        {{ $artist->name }}
+                        @endforeach
+                    <p>
+                        <br>
+                        <a href="{{ route('admin.shows.edit', $show->id) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
                 </div>
             </div>
         </div>

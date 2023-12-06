@@ -15,7 +15,6 @@
                     <p><b>Capacity:</b> {{ $venue->capacity }}</p>
                     <p><b>Phone Number:</b> {{ $venue->phone }}</p> 
                     <p><b>Email Address:</b> {{ $venue->email }}</p>
-                    <br>
                 </div>
             </div>
         </div>

@@ -18,11 +18,11 @@ class ArtistController extends Controller
     public function index()
     {
         //Auth::user()->authoriseRoles('admin');
-        if(!Auth::user()->hasRole('admin')){
-            return to_route('user.artists.index');
+        if(Auth::user()->hasRole('admin')){
+            return to_route('admin.artists.index');
         }
         $artists = Artist::paginate(10);
-        return view('admin.artists.index')->with('artists', $artists);
+        return view('user.artists.index')->with('artists', $artists);
     }
 
     /**
@@ -32,7 +32,7 @@ class ArtistController extends Controller
     {
         $artist = Artist::findOrFail($id);
 
-        return view('admin.artists.show', [
+        return view('user.artists.show', [
             'artist' => $artist 
         ]);
     }

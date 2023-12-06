@@ -45,21 +45,21 @@ Route::middleware('auth')->group(function () {
 Route::get('/home', [HomeController::class, 'index'])->name('home.index');
 
 Route::get('/shows', [UserShowController::class, 'index'])->middleware(['auth', 'role:user,admin'])->name('shows.index');
-Route::get('/shows/{show}', [UserShowController::class, 'index'])->middleware(['auth', 'role:user,admin'])->name('shows.show');
+Route::get('/shows/{show}', [UserShowController::class, 'show'])->middleware(['auth', 'role:user,admin'])->name('shows.show');
 
 Route::resource('/admin/shows', AdminShowController::class)->middleware(['auth', 'role:admin'])->names('admin.shows');
 Route::post('admin/shows/{show}', [AdminShowController::class, 'update'])->middleware(['auth', 'role:admin'])->name('shows.update');
 Route::delete('admin/shows/{show}', [AdminShowController::class, 'destroy'])->middleware(['auth', 'role:admin'])->name('shows.destroy');
 
 Route::get('/artists', [UserArtistController::class, 'index'])->middleware(['auth', 'role:user,admin'])->name('artists.index');
-Route::get('/artists/{artist}', [UserArtistController::class, 'index'])->middleware(['auth', 'role:user,admin'])->name('artists.show');
+Route::get('/artists/{artist}', [UserArtistController::class, 'show'])->middleware(['auth', 'role:user,admin'])->name('artists.show');
 
 Route::resource('/admin/artists', AdminArtistController::class)->middleware(['auth', 'role:admin'])->names('admin.artists');
 Route::post('admin/artists/{artist}', [AdminArtistController::class, 'update'])->middleware(['auth', 'role:admin'])->name('artists.update');
 Route::delete('admin/artists/{artist}', [AdminArtistController::class, 'destroy'])->middleware(['auth', 'role:admin'])->name('artists.destroy');
 
 Route::get('/venues', [UserVenueController::class, 'index'])->middleware(['auth', 'role:user,admin'])->name('venues.index');
-Route::get('/venues/{venue}', [UserVenueController::class, 'index'])->middleware(['auth', 'role:user,admin'])->name('venues.show');
+Route::get('/venues/{venue}', [UserVenueController::class, 'show'])->middleware(['auth', 'role:user,admin'])->name('venues.show');
 
 Route::resource('/admin/venues', AdminVenueController::class)->middleware(['auth', 'role:admin'])->names('admin.venues');
 Route::post('admin/venues/{venue}', [AdminVenueController::class, 'update'])->middleware(['auth', 'role:admin'])->name('venues.update');

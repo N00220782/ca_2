@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('artist_shows', function (Blueprint $table) {
             $table->id();
             $table->foreignId('artist_id');
-            $table->foreign('artist_id')->references('id')->on('artists');
+            $table->foreign('artist_id')->references('id')->on('artists')->onDelete('cascade');
             $table->foreignId('show_id');
-            $table->foreign('show_id')->references('id')->on('shows');
+            $table->foreign('show_id')->references('id')->on('shows')->onDelete('cascade');
             $table->timestamps();
         });
     }

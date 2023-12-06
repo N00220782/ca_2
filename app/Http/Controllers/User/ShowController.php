@@ -19,8 +19,8 @@ class ShowController extends Controller
     public function index()
     {
         //Auth::user()->authoriseRoles('admin');
-        if(!Auth::user()->hasRole('admin')){
-            return to_route('shows.index');
+        if(Auth::user()->hasRole('admin')){
+            return to_route('admin.shows.index');
         }
         $shows = Show::paginate(10);
         return view('user.shows.index')->with('shows', $shows);

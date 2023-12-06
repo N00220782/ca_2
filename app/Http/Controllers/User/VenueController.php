@@ -17,11 +17,11 @@ class VenueController extends Controller
     public function index()
     {
         //Auth::user()->authoriseRoles('admin');
-        if(!Auth::user()->hasRole('admin')){
-            return to_route('user.venues.index');
+        if(Auth::user()->hasRole('admin')){
+            return to_route('admin.venues.index');
         }
         $venues = Venue::paginate(10);
-        return view('admin.venues.index')->with('venues', $venues);
+        return view('user.venues.index')->with('venues', $venues);
     }
 
     /**
@@ -31,7 +31,7 @@ class VenueController extends Controller
     {
         $venue = Venue::findOrFail($id);
 
-        return view('admin.venues.show', [
+        return view('user.venues.show', [
             'venue' => $venue 
         ]);
     }

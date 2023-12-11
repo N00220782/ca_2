@@ -114,6 +114,8 @@ class ShowController extends Controller
     public function update(Request $request, string $id)
     {
 
+        
+
         $request->validate([
             'name' => 'required|string|unique:shows,name|min:2|max:150',
             'date' => 'required',
@@ -126,6 +128,8 @@ class ShowController extends Controller
             'show_image' => 'file|image'
         ]);
 
+        $show = Show::findOrFail($id);
+
         
         $show_image = $request->file('show_image');
         $extension = $show_image->getClientOriginalExtension();
@@ -133,19 +137,32 @@ class ShowController extends Controller
 
         $show_image->storeAs('public/images', $filename);
 
-        $show = Show::where('id',$id)->update([
-            'name' => $request->name,
-            'date' => $request->date,
-            'start_time' => $request->start_time,
-            'end_time' => $request->end_time,
-            'ticket_price' => $request->ticket_price,
-            'description' => $request->description,
-            'venue_id' => $request->venue_id,
-            'show_image' => $filename
+
+        $show->name = $request->name;
+        $show->date = $request->date;
+        $show->start_time = $request->start_time;
+        $show->end_time = $request->end_time;
+        $show->ticket_price = $request->ticket_price;
+        $show->description = $request->description;
+        $show->venue_id = $request->venue_id;
+        $show->show_image = $filename;
+
+        // $show = Show::where('id',$id)->update([
+        //     'name' => $request->name,
+        //     'date' => $request->date,
+        //     'start_time' => $request->start_time,
+        //     'end_time' => $request->end_time,
+        //     'ticket_price' => $request->ticket_price,
+        //     'description' => $request->description,
+        //     'venue_id' => $request->venue_id,
+        //     'show_image' => $filename
             
-        ]);
+        // ]);
+
+        // dd($show);
 
         $show->artists()->attach($request->artists);
+        $show->save();
 
         return to_route('admin.shows.index');
     }

@@ -23,7 +23,7 @@
                         @foreach($show->artists as $artist)
                         {{ $artist->name }}
                         @endforeach
-                    <p>
+                    </p>
                         <a href="{{ route('admin.shows.edit', $show->id) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
                         <form method="POST" action="{{ route('shows.destroy', $show->id) }}">
                             @csrf
@@ -37,4 +37,4 @@
     </div>
 </div>
 
-    @endsection
+@endsection
